@@ -12,19 +12,22 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    name: '',
-    number: '',
     filter: '',
   };
-  addContact = newContact => {
-    this.state.contacts.filter(contact => contact.name === newContact.name)
-      .length
-      ? alert(`${newContact.name}:is already in contacts`)
-      : this.setState(prevState => {
-          return {
-            contacts: [...prevState.contacts, newContact],
-          };
-        });
+  addContact = (newContact, resetForm) => {
+    if (
+      this.state.contacts.filter(contact => contact.name === newContact.name)
+        .length
+    ) {
+      alert(`${newContact.name}:is already in contacts`);
+      return;
+    }
+    this.setState(prevState => {
+      return {
+        contacts: [...prevState.contacts, newContact],
+      };
+    });
+    resetForm();
   };
   deleteContact = delContact => {
     this.setState(prevState => ({

@@ -18,9 +18,7 @@ const ContactSchema = Yup.object().shape({
 
 export const AddForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit({ ...values, id: nanoid() });
-
-    resetForm();
+    onSubmit({ ...values, id: nanoid() }, resetForm);
   };
   return (
     <Formik
@@ -59,5 +57,4 @@ export const AddForm = ({ onSubmit }) => {
 
 AddForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  
 };
